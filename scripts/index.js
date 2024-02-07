@@ -9,13 +9,14 @@ function createCards(cards, remove) {
   const createCard = cardTemplate
     .querySelector(".places__item")
     .cloneNode(true);
-  const createImg = cardTemplate.querySelector(".card__image");
+
   createCard.querySelector(".card__title").textContent = cards.name;
-  createImg.setAttribute("alt", `${cards.link}`);
+
+  const createImg = createCard.querySelector(".card__image");
+  createImg.setAttribute("alt", `${cards.name}`);
   createImg.setAttribute("src", `${cards.link}`);
 
   const deleteButton = createCard.querySelector(".card__delete-button");
-
   deleteButton.addEventListener("click", remove);
   return createCard;
 }
