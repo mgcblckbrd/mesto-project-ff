@@ -17,4 +17,6 @@ function removeCard(evt) {
   card.remove();
 }
 
+
+
 export { createCard, removeCard };
