@@ -3,9 +3,10 @@ const editProfilePopup = document.querySelector(".popup_type_edit");
 const addProfileButton = document.querySelector(".profile__add-button");
 const addCardPopup = document.querySelector(".popup_type_new-card");
 const closedPopupsButtons = document.querySelectorAll(".popup__close");
+const placesList = document.querySelector(".places__list");
+const savePopupButton = document.querySelectorAll(".popup__button");
 
 function openPopup(evt) {
-
   evt.classList.add("popup_is-animated");
   evt.classList.add("popup_is-opened");
   document.addEventListener("keydown", function (evt) {
@@ -17,6 +18,8 @@ function openPopup(evt) {
     }
   });
 }
+
+
 
 editProfileButton.addEventListener("click", () => {
   openPopup(editProfilePopup);
@@ -41,5 +44,35 @@ closedPopupsButtons.forEach((closeButton) => {
     }
   });
 });
+
+// placesList.addEventListener('click', (evt)=> {
+//   console.log(evt)
+// })
+
+const formElement = document.forms["edit-profile"];
+const nameInput = formElement.name;
+const jobInput = formElement.description;
+
+//осознать как сделать закрытие кнопки
+ savePopupButton.forEach((closeButton) => {
+  const popup = closeButton.closest(".popup");
+  closeButton.addEventListener("click", () => {
+    closedPopup(popup);
+  });
+});
+
+function handleFormSubmit(evt) {
+  evt.preventDefault();
+  const profileName = document.querySelector(".profile__title");
+  const profileJob = document.querySelector(".profile__description");
+
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  formElement.reset();
+
+}
+
+
+formElement.addEventListener("submit", handleFormSubmit);
 
 export { closedPopup, openPopup };

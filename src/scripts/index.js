@@ -15,4 +15,3 @@ initialCards.forEach((card) => {
 
 
 
-
