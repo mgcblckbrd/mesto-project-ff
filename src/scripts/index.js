@@ -15,3 +15,19 @@ initialCards.forEach((card) => {
 
 
 
+const newPlace = document.forms["new-place"]
+
+newPlace.addEventListener('submit', (evt) =>{
+  evt.preventDefault();
+const namePlace = newPlace['place-name']
+const linkPlace = newPlace.link
+const card = {}
+card.name = namePlace.value
+card.link = linkPlace.value
+
+cardContainer.prepend(createCard(card, removeCard));
+newPlace.reset()
+})
+
+
+
