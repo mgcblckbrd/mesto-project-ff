@@ -1,3 +1,5 @@
+import { openPopup } from "./modal";
+
 const cardTemplate = document.querySelector("#card-template").content;
 
 function createCard(card, remove) {
@@ -18,5 +20,24 @@ function removeCard(evt) {
 }
 
 
+const placesList = document.querySelector(".places__list");
 
-export { createCard, removeCard };
+const imgPopup = document.querySelector(".popup_type_image");
+
+function likeCard(evt) {
+  if (evt.target.type === "button") {
+    evt.target.classList.toggle("card__like-button_is-active");
+  } else if (evt.target.className === "card__image") {
+    const linkImg = imgPopup.querySelector("img");
+    linkImg.src = evt.target.src;
+
+    const descriptionImg = imgPopup.querySelector("p");
+    descriptionImg.textContent = evt.target.alt;
+
+    openPopup(imgPopup);
+  }
+}
+
+placesList.addEventListener("click", likeCard);
+
+export { createCard, removeCard, likeCard};

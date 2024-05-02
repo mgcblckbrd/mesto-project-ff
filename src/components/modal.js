@@ -5,9 +5,7 @@ const editProfilePopup = document.querySelector(".popup_type_edit");
 const addProfileButton = document.querySelector(".profile__add-button");
 const addCardPopup = document.querySelector(".popup_type_new-card");
 const closedPopupsButtons = document.querySelectorAll(".popup__close");
-const placesList = document.querySelector(".places__list");
 const savePopupButton = document.querySelectorAll(".popup__button");
-const imgPopup = document.querySelector(".popup_type_image");
 
 function openPopup(evt) {
   evt.classList.add("popup_is-animated");
@@ -46,22 +44,9 @@ closedPopupsButtons.forEach((closeButton) => {
   });
 });
 
-function likeCard(evt) {
-  if (evt.target.type === "button") {
-    evt.target.classList.toggle("card__like-button_is-active");
-  } else if (evt.target.className === "card__image") {
 
-    const linkImg = imgPopup.querySelector("img");
-    linkImg.src = evt.target.src;
 
-    const descriptionImg = imgPopup.querySelector("p");
-    descriptionImg.textContent = evt.target.alt
 
-    openPopup(imgPopup);
-  }
-}
-
-placesList.addEventListener("click", likeCard);
 
 const formElement = document.forms["edit-profile"];
 const nameInput = formElement.name;
