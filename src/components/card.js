@@ -19,24 +19,15 @@ function removeCard(evt) {
   card.remove();
 }
 
-
+// лайк в карточке
 const placesList = document.querySelector(".places__list");
-
-const imgPopup = document.querySelector(".popup_type_image");
-
 function likeCard(evt) {
   if (evt.target.type === "button") {
     evt.target.classList.toggle("card__like-button_is-active");
-  } else if (evt.target.className === "card__image") {
-    const linkImg = imgPopup.querySelector("img");
-    linkImg.src = evt.target.src;
-
-    const descriptionImg = imgPopup.querySelector("p");
-    descriptionImg.textContent = evt.target.alt;
-
-    openPopup(imgPopup);
-  }
+  } 
 }
+
+
 
 placesList.addEventListener("click", likeCard);
 

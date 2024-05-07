@@ -9,7 +9,7 @@ const cardContainer = document.querySelector(".places__list");
 
 // загрузка стартовых карточек
 initialCards.forEach((card) => {
-  cardContainer.append(createCard(card, removeCard));
+  cardContainer.append(createCard(card, removeCard, likeCard, openPopupImg));
 });
 
 
@@ -30,5 +30,21 @@ cardContainer.prepend(createCard(card, removeCard));
 newPlace.reset()
 })
 
+// Открытие попапа с большой картинкой
+const placesList = document.querySelector(".places__list");
+const imgPopup = document.querySelector(".popup_type_image");
+function openPopupImg(evt) {
+  if (evt.target.className === "card__image") {
+    const linkImg = imgPopup.querySelector(".popup__image");
+    linkImg.src = evt.target.src;
+    linkImg.alt = evt.target.alt;
 
+    const descriptionImg = imgPopup.querySelector("p");
+    descriptionImg.textContent = evt.target.alt;
 
+    openPopup(imgPopup);
+  }
+}
+placesList.addEventListener("click", openPopupImg);
+
+export {openPopupImg}

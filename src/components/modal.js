@@ -20,6 +20,12 @@ function openPopup(evt) {
   });
 }
 
+
+
+
+
+// openPopup closePopup closePopupByEsc closePopupByOverlay
+
 editProfileButton.addEventListener("click", () => {
   openPopup(editProfilePopup);
 });
@@ -28,6 +34,7 @@ addProfileButton.addEventListener("click", () => {
   openPopup(addCardPopup);
 });
 
+// закрытие попапа
 function closePopup(item) {
   item.classList.remove("popup_is-opened");
 }
@@ -48,9 +55,9 @@ closedPopupsButtons.forEach((closeButton) => {
 
 
 
-const formElement = document.forms["edit-profile"];
-const nameInput = formElement.name;
-const jobInput = formElement.description;
+const formEditProfile = document.forms["edit-profile"];
+const nameInput = formEditProfile.name;
+const jobInput = formEditProfile.description;
 
 //осознать как сделать закрытие кнопки
 savePopupButtons.forEach((closeButton) => {
@@ -60,16 +67,16 @@ savePopupButtons.forEach((closeButton) => {
   });
 });
 
-function handleFormSubmit(evt) {
+function handleFormCreateCard(evt) {
   evt.preventDefault();
   const profileName = document.querySelector(".profile__title");
   const profileJob = document.querySelector(".profile__description");
 
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  formElement.reset();
+  formEditProfile.reset();
 }
 
-formElement.addEventListener("submit", handleFormSubmit);
+formEditProfile.addEventListener("submit", handleFormCreateCard);
 
 export { closePopup, openPopup };
