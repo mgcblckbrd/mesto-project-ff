@@ -1,19 +1,20 @@
-import { openPopup } from "./modal";
-
 const cardTemplate = document.querySelector("#card-template").content;
 
+// Создание карточки
 function createCard(card, remove) {
   const createCard = cardTemplate.cloneNode(true);
-  createCard.querySelector(".card__title").textContent = card.name;
   const createImg = createCard.querySelector(".card__image");
+  const deleteButton = createCard.querySelector(".card__delete-button");
+
+  createCard.querySelector(".card__title").textContent = card.name;
   createImg.setAttribute("alt", card.name);
   createImg.setAttribute("src", card.link);
 
-  const deleteButton = createCard.querySelector(".card__delete-button");
   deleteButton.addEventListener("click", remove);
   return createCard;
 }
 
+// Удаление карточки
 function removeCard(evt) {
   const card = evt.target.closest(".card");
   card.remove();
@@ -21,28 +22,12 @@ function removeCard(evt) {
 
 // лайк в карточке
 const placesList = document.querySelector(".places__list");
+
 function likeCard(evt) {
   if (evt.target.type === "button") {
     evt.target.classList.toggle("card__like-button_is-active");
   }
 }
-
-// ручное добавление карточки
-
-const formEditProfile = document.forms["edit-profile"];
-const nameInput = formEditProfile.name;
-const jobInput = formEditProfile.description;
-
-function handleFormCreateCard(evt) {
-  evt.preventDefault();
-  const profileName = document.querySelector(".profile__title");
-  const profileJob = document.querySelector(".profile__description");
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-  formEditProfile.reset();
-}
-
-formEditProfile.addEventListener("submit", handleFormCreateCard);
 
 placesList.addEventListener("click", likeCard);
 
