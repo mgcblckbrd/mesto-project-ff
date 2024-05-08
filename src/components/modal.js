@@ -1,7 +1,7 @@
 import { createCard } from "./card";
 
 const closedPopupsButtons = document.querySelectorAll(".popup__close");
-const savePopupButtons = document.querySelectorAll(".popup__button");
+
 
 // открытие попапа
 function openPopup(evt) {
@@ -9,6 +9,10 @@ function openPopup(evt) {
   evt.classList.add("popup_is-opened");
   document.addEventListener("keydown", closePopupByEsc);
   document.addEventListener("mousedown", closePopupByOverlay);
+  document.addEventListener('submit', ()=> {
+    closePopup(evt)
+  }
+)
 }
 
 // закрытие попапа
@@ -33,15 +37,12 @@ function closePopupByOverlay(evt) {
   }
 }
 
-
+// закрытие попаов по кнопке
 closedPopupsButtons.forEach((closeButton) => {
   const popup = closeButton.closest(".popup");
   closeButton.addEventListener("click", () => {
     closePopup(popup);
   });
-
 });
-
-
 
 export { closePopup, openPopup };
