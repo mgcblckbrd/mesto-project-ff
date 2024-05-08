@@ -24,11 +24,26 @@ const placesList = document.querySelector(".places__list");
 function likeCard(evt) {
   if (evt.target.type === "button") {
     evt.target.classList.toggle("card__like-button_is-active");
-  } 
+  }
 }
 
+// ручное добавление карточки
 
+const formEditProfile = document.forms["edit-profile"];
+const nameInput = formEditProfile.name;
+const jobInput = formEditProfile.description;
+
+function handleFormCreateCard(evt) {
+  evt.preventDefault();
+  const profileName = document.querySelector(".profile__title");
+  const profileJob = document.querySelector(".profile__description");
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  formEditProfile.reset();
+}
+
+formEditProfile.addEventListener("submit", handleFormCreateCard);
 
 placesList.addEventListener("click", likeCard);
 
-export { createCard, removeCard, likeCard};
+export { createCard, removeCard, likeCard };

@@ -1,34 +1,29 @@
 import "../pages/index.css";
 import { initialCards } from "./cards";
-import { createCard, removeCard, likeCard} from "../components/card";
+import { createCard, removeCard, likeCard } from "../components/card";
 import { closePopup, openPopup } from "../components/modal";
 
 const cardContainer = document.querySelector(".places__list");
-
-
 
 // загрузка стартовых карточек
 initialCards.forEach((card) => {
   cardContainer.append(createCard(card, removeCard, likeCard, openPopupImg));
 });
 
+const newPlace = document.forms["new-place"];
 
-
-
-const newPlace = document.forms["new-place"]
-
-newPlace.addEventListener('submit', (evt) =>{
+newPlace.addEventListener("submit", (evt) => {
   evt.preventDefault();
-const namePlace = newPlace['place-name']
-const linkPlace = newPlace.link
-const card = {
-  name: namePlace.value,
-  link: linkPlace.value
-}
+  const namePlace = newPlace["place-name"];
+  const linkPlace = newPlace.link;
+  const card = {
+    name: namePlace.value,
+    link: linkPlace.value,
+  };
 
-cardContainer.prepend(createCard(card, removeCard));
-newPlace.reset()
-})
+  cardContainer.prepend(createCard(card, removeCard));
+  newPlace.reset();
+});
 
 // Открытие попапа с большой картинкой
 const placesList = document.querySelector(".places__list");
@@ -47,4 +42,17 @@ function openPopupImg(evt) {
 }
 placesList.addEventListener("click", openPopupImg);
 
-export {openPopupImg}
+const editProfileButton = document.querySelector(".profile__edit-button");
+const editProfilePopup = document.querySelector(".popup_type_edit");
+const addProfileButton = document.querySelector(".profile__add-button");
+const addCardPopup = document.querySelector(".popup_type_new-card");
+
+editProfileButton.addEventListener("click", () => {
+  openPopup(editProfilePopup);
+});
+
+addProfileButton.addEventListener("click", () => {
+  openPopup(addCardPopup);
+});
+
+export { openPopupImg };
