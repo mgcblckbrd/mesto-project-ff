@@ -12,8 +12,8 @@ function createCard(card, remove, like, open) {
   createImg.setAttribute("src", card.link);
 
   deleteButton.addEventListener("click", remove);
-  placesList.addEventListener("click", likeCard);
-  placesList.addEventListener("click", openPopupImg);
+  placesList.addEventListener("click", like);
+  placesList.addEventListener("click", open);
   return createCard;
 }
 
