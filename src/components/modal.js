@@ -1,14 +1,9 @@
-
-
 // открытие попапа
 function openPopup(popup) {
   popup.classList.add("popup_is-animated");
   popup.classList.add("popup_is-opened");
   document.addEventListener("keydown", closePopupByEsc);
   document.addEventListener("mousedown", closePopupByOverlay);
-  // document.addEventListener("submit", function submitPopup() {
-  //   closePopup(popup);
-  // });
 }
 
 // закрытие попапа
@@ -16,9 +11,6 @@ function closePopup(item) {
   item.classList.remove("popup_is-opened");
   document.removeEventListener("keydown", closePopupByEsc);
   document.removeEventListener("mousedown", closePopupByOverlay);
-  // document.removeEventListener("submit", function submitPopup() {
-  //   closePopup(popup);
-  // });
 }
 
 //закрытие по Esc
@@ -35,7 +27,5 @@ function closePopupByOverlay(evt) {
     closePopup(evt.target);
   }
 }
-
-
 
 export { closePopup, openPopup };

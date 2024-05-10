@@ -7,7 +7,6 @@ const cardContainer = document.querySelector(".places__list");
 
 const newPlace = document.forms["new-place"];
 
-const placesList = document.querySelector(".places__list");
 const imgPopup = document.querySelector(".popup_type_image");
 
 const editProfileButton = document.querySelector(".profile__edit-button");
@@ -20,6 +19,8 @@ const profileJob = document.querySelector(".profile__description");
 const formEditProfile = document.forms["edit-profile"];
 const nameInput = formEditProfile.name;
 const jobInput = formEditProfile.description;
+
+const closedPopupsButtons = document.querySelectorAll(".popup__close");
 
 // Загрузка стартовых карточек
 initialCards.forEach((card) => {
@@ -54,8 +55,6 @@ function openPopupImg(evt) {
   }
 }
 
-placesList.addEventListener("click", openPopupImg);
-
 addProfileButton.addEventListener("click", () => {
   openPopup(addCardPopup);
 });
@@ -77,7 +76,6 @@ function handleFormCreateCard(evt) {
 }
 
 // закрытие попаов по кнопке
-const closedPopupsButtons = document.querySelectorAll(".popup__close");
 
 closedPopupsButtons.forEach((closeButton) => {
   const popup = closeButton.closest(".popup");

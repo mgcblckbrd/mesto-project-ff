@@ -1,7 +1,8 @@
+import { openPopupImg } from "../scripts";
 const cardTemplate = document.querySelector("#card-template").content;
 
 // Создание карточки
-function createCard(card, remove) {
+function createCard(card, remove, like, open) {
   const createCard = cardTemplate.cloneNode(true);
   const createImg = createCard.querySelector(".card__image");
   const deleteButton = createCard.querySelector(".card__delete-button");
@@ -11,6 +12,8 @@ function createCard(card, remove) {
   createImg.setAttribute("src", card.link);
 
   deleteButton.addEventListener("click", remove);
+  placesList.addEventListener("click", likeCard);
+  placesList.addEventListener("click", openPopupImg);
   return createCard;
 }
 
@@ -28,7 +31,5 @@ function likeCard(evt) {
     evt.target.classList.toggle("card__like-button_is-active");
   }
 }
-
-placesList.addEventListener("click", likeCard);
 
 export { createCard, removeCard, likeCard };
