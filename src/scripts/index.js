@@ -36,8 +36,9 @@ newPlace.addEventListener("submit", (evt) => {
     link: linkPlace.value,
   };
 
-  cardContainer.prepend(createCard(card, removeCard));
+  cardContainer.prepend(createCard(card, removeCard, likeCard, openPopupImg));
   newPlace.reset();
+  closePopup(addCardPopup);
 });
 
 // Открытие попапа с большой картинкой
@@ -55,21 +56,16 @@ function openPopupImg(evt) {
 
 placesList.addEventListener("click", openPopupImg);
 
-
-editProfileButton.addEventListener("click", () => {
-  openPopup(editProfilePopup);
-});
-
 addProfileButton.addEventListener("click", () => {
   openPopup(addCardPopup);
 });
 
 // Редактирование профиля
 editProfileButton.addEventListener("click", () => {
+  openPopup(editProfilePopup);
   nameInput.placeholder = profileName.textContent;
   jobInput.placeholder = profileJob.textContent;
 });
-
 
 function handleFormCreateCard(evt) {
   evt.preventDefault();
@@ -77,7 +73,18 @@ function handleFormCreateCard(evt) {
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   formEditProfile.reset();
+  closePopup(editProfilePopup);
 }
+
+// закрытие попаов по кнопке
+const closedPopupsButtons = document.querySelectorAll(".popup__close");
+
+closedPopupsButtons.forEach((closeButton) => {
+  const popup = closeButton.closest(".popup");
+  closeButton.addEventListener("click", () => {
+    closePopup(popup);
+  });
+});
 
 formEditProfile.addEventListener("submit", handleFormCreateCard);
 export { openPopupImg };

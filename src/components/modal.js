@@ -1,16 +1,15 @@
 
 
-const closedPopupsButtons = document.querySelectorAll(".popup__close");
-
 // открытие попапа
-function openPopup(evt) {
-  evt.classList.add("popup_is-animated");
-  evt.classList.add("popup_is-opened");
+function openPopup(popup) {
+  popup.classList.add("popup_is-animated");
+  popup.classList.add("popup_is-opened");
   document.addEventListener("keydown", closePopupByEsc);
   document.addEventListener("mousedown", closePopupByOverlay);
   document.addEventListener("submit", () => {
-    closePopup(evt);
+    closePopup(popup);
   });
+ 
 }
 
 // закрытие попапа
@@ -18,6 +17,9 @@ function closePopup(item) {
   item.classList.remove("popup_is-opened");
   document.removeEventListener("keydown", closePopupByEsc);
   document.removeEventListener("mousedown", closePopupByOverlay);
+  document.removeEventListener("submit", () => {
+    closePopup(popup);
+  });
 }
 
 //закрытие по Esc
@@ -35,12 +37,6 @@ function closePopupByOverlay(evt) {
   }
 }
 
-// закрытие попаов по кнопке
-closedPopupsButtons.forEach((closeButton) => {
-  const popup = closeButton.closest(".popup");
-  closeButton.addEventListener("click", () => {
-    closePopup(popup);
-  });
-});
+
 
 export { closePopup, openPopup };
